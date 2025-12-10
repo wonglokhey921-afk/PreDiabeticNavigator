@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Diabetic Navigator</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">PD Navigator</div>
+            <div class="user-profile"><i class="fas fa-user-circle"></i></div>
+        </header>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="screen active">
+            <h2>Today's Stability</h2>
+            
+            <!-- Stability Ring (SDG 3.4 Feature) -->
+            <div class="ring-container">
+                <div class="stability-ring" id="stabilityRing">
+                    <div class="inner-ring">
+                        <span id="scoreDisplay">85%</span>
+                        <small>Stable</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Integration (Refinement 3) -->
+            <div class="card activity-card">
+                <div class="card-icon"><i class="fas fa-walking"></i></div>
+                <div class="card-data">
+                    <h3>Activity Minutes</h3>
+                    <p>25 / 30 mins</p>
+                    <div class="progress-bar"><div class="fill" style="width: 80%"></div></div>
+                </div>
+            </div>
+
+            <div class="card jidai-card">
+                <h3><i class="fas fa-robot"></i> AI Tip</h3>
+                <p id="dashboard-ai-tip">Good morning, Alex. Your glucose is stable. Keep it up!</p>
+            </div>
+        </section>
+
+        <!-- LOG MEAL SECTION -->
+        <section id="log" class="screen">
+            <h2>Log Meal</h2>
+            <div class="form-group">
+                <label>Meal Type</label>
+                <div class="icon-select">
+                    <button class="icon-btn active" onclick="selectType(this, 'Breakfast')"><i class="fas fa-coffee"></i><br>Breakfast</button>
+                    <button class="icon-btn" onclick="selectType(this, 'Lunch')"><i class="fas fa-hamburger"></i><br>Lunch</button>
+                    <button class="icon-btn" onclick="selectType(this, 'Dinner')"><i class="fas fa-utensils"></i><br>Dinner</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <div class="input-wrapper">
+                    <input type="text" id="mealInput" placeholder="e.g., Oatmeal and berries">
+                    <!-- Voice Input (Refinement 1) -->
+                    <button id="voiceBtn" onclick="simulateVoice()"><i class="fas fa-microphone"></i></button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Post-Prandial Glucose (Optional)</label>
+                <input type="number" id="glucoseInput" placeholder="mg/dL">
+            </div>
+
+            <button class="primary-btn" onclick="saveMeal()">Log Data</button>
+        </section>
+
+        <!-- INSIGHTS SECTION -->
+        <section id="insights" class="screen">
+            <h2>Weekly Insights</h2>
+            
+            <!-- Traffic Light System (Refinement 2) -->
+            <div class="insight-summary">
+                <div class="traffic-light green" id="trafficLight"></div>
+                <div class="summary-text">
+                    <h3 id="summaryTitle">On Track</h3>
+                    <p id="summaryDesc">Your glucose spikes are minimal this week.</p>
+                </div>
+            </div>
+
+            <div class="chart-placeholder">
+                <div class="bar" style="height: 60%">M</div>
+                <div class="bar" style="height: 40%">T</div>
+                <div class="bar" style="height: 80%">W</div>
+                <div class="bar" style="height: 50%">T</div>
+                <div class="bar" style="height: 90%" id="todayBar">F</div>
+            </div>
+
+            <div class="ai-explanation">
+                <h4><i class="fas fa-info-circle"></i> AI Explanation</h4>
+                <p>Your weight stabilized because you swapped white rice for quinoa on Tuesday and Wednesday.</p>
+            </div>
+        </section>
+
+        <!-- Navigation Bar -->
+        <nav class="bottom-nav">
+            <button onclick="switchScreen('dashboard')" class="nav-item active"><i class="fas fa-home"></i>Home</button>
+            <button onclick="switchScreen('log')" class="nav-item"><i class="fas fa-plus-circle"></i>Log</button>
+            <button onclick="switchScreen('insights')" class="nav-item"><i class="fas fa-chart-line"></i>Insights</button>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
